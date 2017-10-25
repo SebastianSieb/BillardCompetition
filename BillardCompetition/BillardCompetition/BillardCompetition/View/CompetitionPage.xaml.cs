@@ -14,7 +14,7 @@ namespace BillardCompetition.View
         public CompetitionPage(List<string> players)
         {
             InitializeComponent();
-            BindingContext = new CompetitionPageViewModel(players);
+            BindingContext = new CompetitionPageViewModel(players, CompetitionGrid);
             NavigationPage.SetHasNavigationBar(this, false);
         }
     }

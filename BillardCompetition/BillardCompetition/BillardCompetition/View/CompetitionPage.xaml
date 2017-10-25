@@ -2,5 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BillardCompetition.View.CompetitionPage">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <StackLayout VerticalOptions ="StartAndExpand">
+      <StackLayout.Children>
+        <Label Text ="Competition" FontSize ="40" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold"/>
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+          <StackLayout VerticalOptions="StartAndExpand">
+            <StackLayout.Children>
+              <Label Text ="Current Match" FontSize ="40" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold"/>
+              <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Text ="{Binding Path=PlayerOne}" FontSize ="20" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold" Grid.Row="0" Grid.Column="0"/>
+                <Label Text ="VS" FontSize ="30" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold" Grid.Row="0" Grid.Column="1"/>
+                <Label Text ="{Binding Path=PlayerTwo}" FontSize ="20" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold" Grid.Row="0" Grid.Column="2"/>
+                <Button Text ="Win" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=P1Win}" Grid.Row="1" Grid.Column="0"/>
+                <Button Text ="Win" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=P2Win}" Grid.Row="1" Grid.Column="2"/>
+              </Grid>
+
+              <Grid x:Name="CompetitionGrid" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+              </Grid>
+            </StackLayout.Children>
+          </StackLayout>
+        </ScrollView>
+      </StackLayout.Children>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

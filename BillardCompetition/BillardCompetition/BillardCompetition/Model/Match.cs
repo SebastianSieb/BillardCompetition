@@ -21,5 +21,10 @@ namespace BillardCompetition.Model
             Durration = new TimeSpan(0);
 
         }
+
+        public string toString()
+        {
+            return Player1.Name + " VS " + Player2.Name;
+        }
     }
 }
