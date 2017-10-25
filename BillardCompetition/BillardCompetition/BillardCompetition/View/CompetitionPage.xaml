@@ -5,11 +5,19 @@
   <ContentPage.Content>
     <StackLayout VerticalOptions ="StartAndExpand">
       <StackLayout.Children>
-        <Label Text ="Competition" FontSize ="40" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold"/>
+        <Label Text ="Competition" FontSize ="40" VerticalOptions ="Center" HorizontalOptions ="Center" FontAttributes ="Bold"/>
         <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
           <StackLayout VerticalOptions="StartAndExpand">
             <StackLayout.Children>
-              <Label Text ="Current Match" FontSize ="40" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold"/>
+              <Label Text ="Current Match" FontSize ="40" VerticalOptions ="Center" HorizontalOptions ="Center" FontAttributes ="Bold"/>
+
+              <Picker x:Name="MatchPicker"
+                SelectedIndex="{Binding Path=MatchNumber, Mode=TwoWay}"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Title="Select Match"
+              />
+
               <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="Auto" />
@@ -17,13 +25,14 @@
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text ="{Binding Path=PlayerOne}" FontSize ="20" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold" Grid.Row="0" Grid.Column="0"/>
-                <Label Text ="VS" FontSize ="30" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold" Grid.Row="0" Grid.Column="1"/>
-                <Label Text ="{Binding Path=PlayerTwo}" FontSize ="20" VerticalOptions ="Center" HorizontalOption ="Center" FontAttribute ="Bold" Grid.Row="0" Grid.Column="2"/>
-                <Button Text ="Win" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=P1Win}" Grid.Row="1" Grid.Column="0"/>
-                <Button Text ="Win" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=P2Win}" Grid.Row="1" Grid.Column="2"/>
+                <Label Text ="{Binding Path=PlayerOne}" FontSize ="30" VerticalOptions ="Center" HorizontalOptions="Center" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+                <Label Text ="VS" FontSize ="20" VerticalOptions ="Center" HorizontalOptions ="Center" FontAttributes ="Bold" Grid.Row="0" Grid.Column="2"/>
+                <Label Text ="{Binding Path=PlayerTwo}" FontSize ="30" VerticalOptions ="Center" HorizontalOptions ="Center" FontAttributes ="Bold" Grid.Row="0" Grid.Column="3"/>
+                <Button Text ="Win" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=P1Win}" Grid.Row="1" Grid.Column="1"/>
+                <Button Text ="Win" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=P2Win}" Grid.Row="1" Grid.Column="3"/>
               </Grid>
 
+              
               <Grid x:Name="CompetitionGrid" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="Auto" />

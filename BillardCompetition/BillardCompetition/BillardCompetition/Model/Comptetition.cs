@@ -28,7 +28,7 @@ namespace BillardCompetition.Model
 
             for(int i = 0; i < player.Length; i++)
             {
-                for(int j = i; j < player.Length; j++)
+                for(int j = i+1; j < player.Length; j++)
                 {
                     Matches.Add(new Match(player[i], player[j]));
                 }

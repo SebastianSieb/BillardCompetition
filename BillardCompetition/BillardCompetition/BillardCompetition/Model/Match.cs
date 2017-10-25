@@ -24,7 +24,7 @@ namespace BillardCompetition.Model
 
         public string toString()
         {
-            return Player1.Name + " VS " + Player2.Name;
+            return Player1.Name + " vs " + Player2.Name;
         }
     }
 }
