@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BillardCompetition.View.StartPage">
+  <ContentPage.Content>
+    <StackLayout VerticalOptions ="StartAndExpand">
+      <StackLayout.Children>
+        <!---Heading-->
+        <Label Text ="Select Players" FontSize ="40" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+        <ScrollView Orientation ="Vertical" VerticalOptions="FillAndExpand">
+          <StackLayout VerticalOptions="StartAndExpand">
+            <StackLayout.Children>
+              <Entry Text="{Binding Path=PlayerToAdd, Mode=TwoWay}"/>
+              <Button Text ="Add" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=Add}" />
+              <Label Text ="Current Players" FontSize ="30" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" />
+              <Grid x:Name="playerGrid" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+              </Grid>
+              <Button Text ="Start Game" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=Start}" />
+            </StackLayout.Children>
+          </StackLayout>
+        </ScrollView>
+      </StackLayout.Children>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
