@@ -5,12 +5,12 @@
   <ContentPage.Content>
     <StackLayout VerticalOptions ="StartAndExpand">
       <StackLayout.Children>
-        <Label Text ="Competition" FontSize ="40" VerticalOptions ="Center" HorizontalOptions ="Center" FontAttributes ="Bold"/>
         <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
           <StackLayout VerticalOptions="StartAndExpand">
             <StackLayout.Children>
               <Label Text ="Current Match" FontSize ="40" VerticalOptions ="Center" HorizontalOptions ="Center" FontAttributes ="Bold"/>
 
+              <Label Text=""/>
               <Picker x:Name="MatchPicker"
                 SelectedIndex="{Binding Path=MatchNumber, Mode=TwoWay}"
                 HorizontalOptions="CenterAndExpand"
@@ -32,6 +32,9 @@
                 <Button Text ="Win" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Scale="1.2" Command ="{Binding Path=P2Win}" Grid.Row="1" Grid.Column="3"/>
               </Grid>
 
+              <Label Text=""/>
+              <Label Text=""/>
+              <Label Text=""/>
               
               <Grid x:Name="CompetitionGrid" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>

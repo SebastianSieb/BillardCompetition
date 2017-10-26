@@ -166,7 +166,7 @@ namespace BillardCompetition.ViewModel
                 FontAttributes = FontAttributes.Bold
             }, 2, 0);
 
-            for(int i = 1; i < competition.Matches.Count; i++)
+            for(int i = 0; i < competition.Matches.Count; i++)
             {
                 Match mtch = competition.Matches.ToArray()[i];
                 competitionGrid.Children.Add(new Label
@@ -176,7 +176,7 @@ namespace BillardCompetition.ViewModel
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center,
                     FontAttributes = FontAttributes.Bold
-                }, 1, i);
+                }, 1, i+1);
 
                 string tmp = (mtch.Winner == null) ? "-" : mtch.Winner.Name; 
                 competitionGrid.Children.Add(new Label
@@ -186,7 +186,7 @@ namespace BillardCompetition.ViewModel
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center,
                     FontAttributes = FontAttributes.Bold
-                }, 2, i);
+                }, 2, i+1);
                 competitionGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
             }
         }
