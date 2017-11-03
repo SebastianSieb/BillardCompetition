@@ -11,35 +11,35 @@ namespace BillardCompetition.ViewModel
 {
     public class CompetitionPageViewModel : BaseViewModel
     {
-        private string playerOne;
+        private string _playerOne;
         public string PlayerOne
         {
             get
             {
-                return playerOne;
+                return _playerOne;
             }
             set
             {
-                if (value != playerOne)
+                if (value != _playerOne)
                 {
-                    playerOne = value;
+                    _playerOne = value;
                     OnPropertyChanged("PlayerOne");
                 }
             }
         }
 
-        private string playerTwo;
+        private string _playerTwo;
         public string PlayerTwo
         {
             get
             {
-                return playerTwo;
+                return _playerTwo;
             }
             set
             {
-                if (value != playerTwo)
+                if (value != _playerTwo)
                 {
-                    playerTwo = value;
+                    _playerTwo = value;
                     OnPropertyChanged("PlayerTwo");
                 }
             }
@@ -48,36 +48,36 @@ namespace BillardCompetition.ViewModel
         public ICommand P1Win { get; set; }
         public ICommand P2Win { get; set; }
 
-        private Grid competitionGrid;
-        private Competition competition;
+        private readonly Grid _competitionGrid;
+        private readonly Competition _competition;
 
-        private int matchNumber;
+        private int _matchNumber;
         public int MatchNumber
         {
             get
             {
-                return matchNumber;
+                return _matchNumber;
             }
             set
             {
-                if (value != matchNumber)
+                if (value != _matchNumber)
                 {
-                    matchNumber = value;
+                    _matchNumber = value;
                     updateCurrentMatch();
                     OnPropertyChanged("MatchNumber");
                 }
             }
         }
-        private Picker matchPicker;
-        private Match selectedMatch;
+        private readonly Picker _matchPicker;
+        private Match _selectedMatch;
 
 
         public CompetitionPageViewModel(List<string> players, Grid competitionGrid, Picker matchPicker)
         {
-            this.competitionGrid = competitionGrid;
-            competition = new Competition(players);
+            this._competitionGrid = competitionGrid;
+            _competition = new Competition(players);
             updateCompetitionGrid();
-            this.matchPicker = matchPicker;
+            this._matchPicker = matchPicker;
             updatePicker();
             updateCurrentMatch();
             P1Win = new Command(o => p1Win());
@@ -86,16 +86,16 @@ namespace BillardCompetition.ViewModel
 
         private void p1Win()
         {
-            if (selectedMatch == null) return;
-            selectedMatch.Winner = selectedMatch.Player1;
+            if (_selectedMatch == null) return;
+            _selectedMatch.Winner = _selectedMatch.Player1;
             updatePicker();
             updateCompetitionGrid();
         }
 
         private void p2Win()
         {
-            if (selectedMatch == null) return;
-            selectedMatch.Winner = selectedMatch.Player2;
+            if (_selectedMatch == null) return;
+            _selectedMatch.Winner = _selectedMatch.Player2;
             updatePicker();
             updateCompetitionGrid();
         }
@@ -103,27 +103,27 @@ namespace BillardCompetition.ViewModel
 
         private void updateCurrentMatch()
         {
-            selectedMatch = getSelectedMatch();
-            if (selectedMatch == null)
+            _selectedMatch = getSelectedMatch();
+            if (_selectedMatch == null)
             {
                 PlayerOne = "-";
                 PlayerTwo = "-";
             } else
             {
-                PlayerOne = selectedMatch.Player1.Name;
-                PlayerTwo = selectedMatch.Player2.Name;
+                PlayerOne = _selectedMatch.Player1.Name;
+                PlayerTwo = _selectedMatch.Player2.Name;
             }
         }
 
         private void updatePicker()
         {
             MatchNumber = -1;
-            matchPicker.Items.Clear();
-            foreach(Match match in competition.Matches)
+            _matchPicker.Items.Clear();
+            foreach(Match match in _competition.Matches)
             {
                 if(match.Winner == null)
                 {
-                    matchPicker.Items.Add(match.toString());
+                    _matchPicker.Items.Add(match.toString());
                 }
             }
         }
@@ -133,9 +133,9 @@ namespace BillardCompetition.ViewModel
             string selectedString = "";
             if(MatchNumber != -1)
             {
-                selectedString = matchPicker.Items.ToArray()[MatchNumber];
+                selectedString = _matchPicker.Items.ToArray()[MatchNumber];
             }
-            foreach(Match mtch in competition.Matches)
+            foreach(Match mtch in _competition.Matches)
             {
                 if (mtch.toString().Equals(selectedString)) {
                     return mtch;
@@ -146,9 +146,9 @@ namespace BillardCompetition.ViewModel
 
         private void updateCompetitionGrid()
         {
-            clearGrid(competitionGrid);
+            clearGrid(_competitionGrid);
 
-            competitionGrid.Children.Add(new Label
+            _competitionGrid.Children.Add(new Label
             {
                 Text = "Match",
                 FontSize = 30,
@@ -157,7 +157,7 @@ namespace BillardCompetition.ViewModel
                 FontAttributes = FontAttributes.Bold
             }, 1, 0);
 
-            competitionGrid.Children.Add(new Label
+            _competitionGrid.Children.Add(new Label
             {
                 Text = "Winner",
                 FontSize = 30,
@@ -166,10 +166,10 @@ namespace BillardCompetition.ViewModel
                 FontAttributes = FontAttributes.Bold
             }, 2, 0);
 
-            for(int i = 0; i < competition.Matches.Count; i++)
+            for(int i = 0; i < _competition.Matches.Count; i++)
             {
-                Match mtch = competition.Matches.ToArray()[i];
-                competitionGrid.Children.Add(new Label
+                Match mtch = _competition.Matches.ToArray()[i];
+                _competitionGrid.Children.Add(new Label
                 {
                     Text = mtch.toString(),
                     FontSize = 15,
@@ -179,7 +179,7 @@ namespace BillardCompetition.ViewModel
                 }, 1, i+1);
 
                 string tmp = (mtch.Winner == null) ? "-" : mtch.Winner.Name; 
-                competitionGrid.Children.Add(new Label
+                _competitionGrid.Children.Add(new Label
                 {
                     Text = tmp,
                     FontSize = 15,
@@ -187,7 +187,7 @@ namespace BillardCompetition.ViewModel
                     VerticalOptions = LayoutOptions.Center,
                     FontAttributes = FontAttributes.Bold
                 }, 2, i+1);
-                competitionGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                _competitionGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
             }
         }
 
